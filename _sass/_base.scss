@@ -1,3 +1,77 @@
+// ========== 基础 Mixin ==========
+
+@mixin transition-all()
+{
+    -webkit-transition: all 0.35s;
+    -moz-transition: all 0.35s;
+    transition: all 0.35s;
+}
+
+@mixin background-cover()
+{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
+}
+
+@mixin button-variant($color, $background, $border)
+{
+	color: $color;
+	background-color: $background;
+	border-color: $border;
+	@include transition-all;
+
+	&:hover,
+	&:focus,
+	&.focus,
+	&:active,
+	&.active,
+	.open > .dropdown-toggle & {
+		color: $color;
+		background-color: darken($background, 5%);
+    border-color: darken($border, 7%);
+	}
+	&:active,
+	&.active,
+	.open > .dropdown-toggle & {
+		background-image: none;
+	}
+	&.disabled,
+	&[disabled],
+	fieldset[disabled] & {
+		&,
+		&:hover,
+		&:focus,
+		&.focus,
+		&:active,
+		&.active {
+			background-color: $background;
+			border-color: $border;
+		}
+	}
+
+	.badge {
+		color: $background;
+		background-color: $color;
+	}
+}
+
+@mixin sans-serif-font()
+{
+	font-family: 'Open Sans', 'Helvetica Neue', Arial, sans-serif;
+}
+
+@mixin serif-font()
+{
+	font-family: 'Merriweather', 'Helvetica Neue', Arial, sans-serif;
+}
+
+// ========== 基础样式 ==========
+
+$theme-primary: #F05F40; // 主题色 - 橙色
+$theme-dark: #222222;   // 深色 - 近黑色
+
 html,
 body {
     height: 100%;
@@ -67,13 +141,14 @@ aside {
     padding: 0;
 }
 
-// Navigation
+// ========== 导航栏 ==========
 
 .navbar-default {
     background-color: white;
     border-color: rgba($theme-dark, .5);
     @include sans-serif-font;
     @include transition-all;
+    
     .navbar-header .navbar-brand {
         color: $theme-primary;
         @include sans-serif-font;
@@ -84,6 +159,7 @@ aside {
             color: darken($theme-primary, 10%);
         }
     }
+    
     .nav {
         > li {
             > a,
@@ -96,6 +172,7 @@ aside {
                     color: $theme-primary;
                 }
             }
+            
             &.active {
                 > a,
                 > a:focus {
@@ -108,9 +185,11 @@ aside {
             }
         }
     }
+    
     @media (min-width: 768px) {
         background-color: transparent;
         border-color: rgba(white, .3);
+        
         .navbar-header .navbar-brand {
             color: rgba(white, .7);
             &:hover,
@@ -118,6 +197,7 @@ aside {
                 color: white;
             }
         }
+        
         .nav > li > a,
         .nav > li > a:focus {
             color: rgba(white, .7);
@@ -125,9 +205,11 @@ aside {
                 color: white;
             }
         }
+        
         &.affix {
             background-color: white;
             border-color: rgba($theme-dark, .5);
+            
             .navbar-header .navbar-brand {
                 color: $theme-primary;
                 font-size: 14px;
@@ -136,6 +218,7 @@ aside {
                     color: darken($theme-primary, 10%);
                 }
             }
+            
             .nav > li > a,
             .nav > li > a:focus {
                 color: $theme-dark;
@@ -147,7 +230,7 @@ aside {
     }
 }
 
-// Homepage Header
+// ========== 首页头部 ==========
 
 header {
     position: relative;
@@ -158,11 +241,13 @@ header {
     background-image: url('../img/Background.png');
     text-align: center;
     color: white;
+    
     .header-content {
         position: relative;
         text-align: center;
         padding: 100px 15px 100px;
         width: 100%;
+        
         .header-content-inner {
             h1 {
                 font-weight: 700;
@@ -170,9 +255,11 @@ header {
                 margin-top: 0;
                 margin-bottom: 0;
             }
+            
             hr {
                 margin: 30px auto;
             }
+            
             p {
                 font-weight: 300;
                 color: rgba(white, .7);
@@ -181,8 +268,10 @@ header {
             }
         }
     }
+    
     @media (min-width: 768px) {
         min-height: 100%;
+        
         .header-content {
             position: absolute;
             top: 50%;
@@ -190,10 +279,12 @@ header {
             -ms-transform: translateY(-50%);
             transform: translateY(-50%);
             padding: 0 50px;
+            
             .header-content-inner {
                 max-width: 1000px;
                 margin-left: auto;
                 margin-right: auto;
+                
                 p {
                     font-size: 18px;
                     max-width: 80%;
@@ -205,7 +296,7 @@ header {
     }
 }
 
-// Sections
+// ========== 主要内容区 ==========
 
 .section-heading {
     margin-top: 0;
@@ -214,69 +305,118 @@ header {
 .service-box {
     max-width: 400px;
     margin: 50px auto 0;
+    
     @media (min-width: 992px) {
         margin: 20px auto 0;
     }
+    
     p {
         margin-bottom: 0;
     }
 }
 
-.portfolio-box {
-    position: relative;
-    display: block;
-    max-width: 650px;
-    margin: 0 auto;
-    .portfolio-box-caption {
-        color: white;
-        opacity: 0;
-        display: block;
-        background: rgba( $theme-primary, .9 );
-        position: absolute;
-        bottom: 0;
-        text-align: center;
-        width: 100%;
-        height: 100%;
-        @include transition-all;
-        .portfolio-box-caption-content {
-            width: 100%;
-            text-align: center;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            .project-category,
-            .project-name {
-                @include sans-serif-font;
-                padding: 0 15px;
+// ========== 作品集部分（修改重点） ==========
+
+#portfolio {
+    .container-fluid {
+        // 移除默认 padding，让内容铺满页面
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .portfolio-grid {
+        // 使用 Flexbox 实现每行 3 个作品
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 -15px; // 抵消列的 padding
+
+        @media (min-width: 768px) {
+            .portfolio-item {
+                width: 50%; // 平板每行 2 个
             }
-            .project-category {
-                text-transform: uppercase;
-                font-weight: 600;
-                font-size: 14px;
-            }
-            .project-name {
-                font-size: 18px;
+        }
+
+        @media (min-width: 992px) {
+            .portfolio-item {
+                width: 33.333%; // 桌面每行 3 个
             }
         }
     }
-    &:hover {
-        .portfolio-box-caption {
-            opacity: 1;
-        }
-    }
-    @media (min-width: 768px) {
-        .portfolio-box-caption {
-            .portfolio-box-caption-content {
-                .project-category {
-                    font-size: 16px;
+
+    .portfolio-item {
+        // 移除 max-width 和 margin: 0 auto
+        padding: 0 15px; // 添加间距
+        margin-bottom: 30px; // 作品项之间的垂直间距
+
+        .portfolio-box {
+            // 移除 max-width 和 margin: 0 auto
+            display: block;
+            width: 100%; // 确保填满父容器
+            height: 100%;
+            position: relative;
+            overflow: hidden; // 防止图片溢出
+
+            // 图片样式
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover; // 保持图片比例并覆盖容器
+                transition: transform 0.5s;
+
+                // 悬停时图片放大
+                .portfolio-box:hover & {
+                    transform: scale(1.1);
                 }
-                .project-name {
-                    font-size: 22px;
+            }
+
+            // 遮罩层样式
+            .portfolio-box-caption {
+                color: white;
+                opacity: 0;
+                display: block;
+                background: rgba($theme-primary, .9);
+                position: absolute;
+                bottom: 0;
+                text-align: center;
+                width: 100%;
+                height: 100%;
+                transition: opacity 0.35s;
+
+                // 内容垂直居中
+                .portfolio-box-caption-content {
+                    width: 100%;
+                    text-align: center;
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+
+                    .project-category,
+                    .project-name {
+                        @include sans-serif-font;
+                        padding: 0 15px;
+                    }
+
+                    .project-category {
+                        text-transform: uppercase;
+                        font-weight: 600;
+                        font-size: 14px;
+                    }
+
+                    .project-name {
+                        font-size: 18px;
+                    }
                 }
+            }
+
+            // 悬停时显示遮罩层
+            &:hover .portfolio-box-caption {
+                opacity: 1;
             }
         }
     }
 }
+
+// ========== 行动召唤区 ==========
 
 .call-to-action {
     h2 {
@@ -284,17 +424,19 @@ header {
     }
 }
 
-// Bootstrap Overrides
+// ========== Bootstrap 覆盖 ==========
+
 .text-primary {
     color: $theme-primary;
 }
 
 .no-gutter > [class*='col-'] {
-    padding-right:0;
-    padding-left:0;
+    padding-right: 0;
+    padding-left: 0;
 }
 
-// Button Styles
+// ========== 按钮样式 ==========
+
 .btn-default {
     @include button-variant($theme-dark, white, white);
 }
@@ -315,14 +457,15 @@ header {
     padding: 15px 30px;
 }
 
-// Contact
+// ========== 联系部分 ==========
+
 #contact .fa {
     color: $theme-dark;
     font-size: 4em;
 }
 
-// Extras
-// -- Highlight Color Customization
+// ========== 额外样式 ==========
+
 ::-moz-selection {
     color: white;
     text-shadow: none;
@@ -348,4 +491,3 @@ img::-moz-selection {
 body {
     -webkit-tap-highlight-color: $theme-dark;
 }
-
