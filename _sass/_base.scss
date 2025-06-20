@@ -69,8 +69,10 @@
 
 // ========== 基础样式 ==========
 
-$theme-primary: #F05F40; // 主题色 - 橙色
-$theme-dark: #222222;   // 深色 - 近黑色
+$theme-primary: #165DFF; // 主蓝色
+$theme-light: #4080FF;  // 浅蓝（用于悬停、强调）
+$theme-dark: #0E3480;   // 深蓝（用于深色背景、文字）
+$theme-darkest: #051A40; // 最深蓝（用于导航栏背景）
 
 html,
 body {
@@ -80,6 +82,7 @@ body {
 
 body {
     @include serif-font;
+    background-color: #F8FAFC; // 浅灰背景（与蓝色主题协调）
 }
 
 hr {
@@ -97,7 +100,7 @@ a {
     color: $theme-primary;
     &:hover,
     &:focus {
-        color: darken($theme-primary, 10%);
+        color: $theme-light; // 悬停颜色改为浅蓝
     }
 }
 
@@ -108,12 +111,14 @@ h4,
 h5,
 h6 {
     @include sans-serif-font;
+    color: $theme-dark; // 标题颜色改为深蓝
 }
 
 p {
     font-size: 16px;
     line-height: 1.5;
     margin-bottom: 20px;
+    color: #4B5563; // 文本颜色改为深灰色（与蓝色主题协调）
 }
 
 .bg-primary {
@@ -121,7 +126,12 @@ p {
 }
 
 .bg-dark {
-    background-color: $theme-dark;
+    background-color: $theme-dark; // 深色背景改为深蓝
+    color: white;
+}
+
+.bg-darker {
+    background-color: $theme-darkest; // 新增最深色背景（用于导航栏）
     color: white;
 }
 
@@ -144,19 +154,19 @@ aside {
 // ========== 导航栏 ==========
 
 .navbar-default {
-    background-color: white;
-    border-color: rgba($theme-dark, .5);
+    background-color: $theme-darkest; // 导航栏背景改为最深蓝
+    border-color: rgba(white, .1); // 导航栏边框改为半透明白色
     @include sans-serif-font;
     @include transition-all;
     
     .navbar-header .navbar-brand {
-        color: $theme-primary;
+        color: white; // 品牌文字改为白色
         @include sans-serif-font;
         font-weight: 700;
         text-transform: uppercase;
         &:hover,
         &:focus {
-            color: darken($theme-primary, 10%);
+            color: $theme-light; // 悬停颜色改为浅蓝
         }
     }
     
@@ -167,16 +177,16 @@ aside {
                 text-transform: uppercase;
                 font-weight: 700;
                 font-size: 13px;
-                color: $theme-dark;
+                color: rgba(white, .7); // 导航链接改为半透明白色
                 &:hover {
-                    color: $theme-primary;
+                    color: white; // 悬停颜色改为白色
                 }
             }
             
             &.active {
                 > a,
                 > a:focus {
-                    color: $theme-primary !important;
+                    color: $theme-light !important; // 激活状态颜色改为浅蓝
                     background-color: transparent;
                     &:hover {
                         background-color: transparent;
@@ -187,7 +197,7 @@ aside {
     }
     
     @media (min-width: 768px) {
-        background-color: transparent;
+        background-color: transparent; // 初始透明背景
         border-color: rgba(white, .3);
         
         .navbar-header .navbar-brand {
@@ -207,23 +217,23 @@ aside {
         }
         
         &.affix {
-            background-color: white;
-            border-color: rgba($theme-dark, .5);
+            background-color: $theme-darkest; // 滚动后导航栏背景改为最深蓝
+            border-color: rgba(white, .1);
             
             .navbar-header .navbar-brand {
-                color: $theme-primary;
+                color: white;
                 font-size: 14px;
                 &:hover,
                 &:focus {
-                    color: darken($theme-primary, 10%);
+                    color: $theme-light;
                 }
             }
             
             .nav > li > a,
             .nav > li > a:focus {
-                color: $theme-dark;
+                color: rgba(white, .7);
                 &:hover {
-                    color: $theme-primary;
+                    color: white;
                 }
             }
         }
@@ -238,7 +248,7 @@ header {
     min-height: auto;
     @include background-cover;
     background-position: center;
-    background-image: url('../img/Background.png');
+    background-image: url('../img/Background.png'); // 背景图保持不变
     text-align: center;
     color: white;
     
@@ -254,15 +264,17 @@ header {
                 text-transform: uppercase;
                 margin-top: 0;
                 margin-bottom: 0;
+                color: white; // 标题颜色改为白色
             }
             
             hr {
                 margin: 30px auto;
+                border-color: $theme-light; // 分隔线颜色改为浅蓝
             }
             
             p {
                 font-weight: 300;
-                color: rgba(white, .7);
+                color: rgba(white, .8); // 段落文字改为更清晰的半透明白色
                 font-size: 16px;
                 margin-bottom: 50px;
             }
@@ -300,6 +312,7 @@ header {
 
 .section-heading {
     margin-top: 0;
+    color: $theme-dark; // 章节标题颜色改为深蓝
 }
 
 .service-box {
@@ -369,12 +382,12 @@ header {
                 }
             }
 
-            // 遮罩层样式
+            // 遮罩层样式 - 改为蓝色系
             .portfolio-box-caption {
                 color: white;
                 opacity: 0;
                 display: block;
-                background: rgba($theme-primary, .9);
+                background: rgba($theme-primary, .9); // 遮罩层改为主蓝色
                 position: absolute;
                 bottom: 0;
                 text-align: center;
@@ -421,6 +434,12 @@ header {
 .call-to-action {
     h2 {
         margin: 0 auto 20px;
+        color: white; // 标题颜色改为白色
+    }
+    
+    // 行动召唤区背景改为蓝色系
+    &.bg-primary {
+        background-color: $theme-primary;
     }
 }
 
@@ -441,8 +460,16 @@ header {
     @include button-variant($theme-dark, white, white);
 }
 
+// 主要按钮改为蓝色系
 .btn-primary {
     @include button-variant(white, $theme-primary, $theme-primary);
+    
+    &:hover,
+    &:focus,
+    &.focus {
+        background-color: $theme-light; // 悬停颜色改为浅蓝
+        border-color: $theme-light;
+    }
 }
 
 .btn {
@@ -459,9 +486,19 @@ header {
 
 // ========== 联系部分 ==========
 
-#contact .fa {
-    color: $theme-dark;
-    font-size: 4em;
+#contact {
+    .fa {
+        color: $theme-primary; // 图标颜色改为主蓝色
+        font-size: 4em;
+    }
+    
+    a {
+        color: $theme-primary;
+        
+        &:hover {
+            color: $theme-light; // 链接悬停颜色改为浅蓝
+        }
+    }
 }
 
 // ========== 额外样式 ==========
