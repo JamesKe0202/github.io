@@ -331,6 +331,12 @@ header {
 // ========== 作品集部分（修改重点） ==========
 
 #portfolio {
+	/* 1. 设置浅蓝色背景，使用 $theme-light 变量 */
+    background-color: $theme-light; 
+    
+    /* 2. 添加上下和左右的内边距 */
+    padding: 25px 50px; /* 示例：上下 100px，左右 50px */
+	
     .container-fluid {
         // 移除默认 padding，让内容铺满页面
         padding-left: 0;
