@@ -344,25 +344,11 @@ header {
     .section-heading, h3 {
         color: white;
     }
-    
-    /* 5. 调整次要/灰色文本的颜色（例如摘要或描述）*/
-    .text-muted {
-        color: rgba(white, .8); /* 使用半透明白色，比纯白色柔和 */
-    }
-
     /* 6. 调整项目符号列表的颜色 */
     ul {
         color: rgba(white, .9);
     }
     
-    /* 7. 调整超链接颜色（例如教育背景中的大学名称） */
-    a {
-        color: $theme-light; /* 使用浅蓝色作为链接颜色，保持主题的协调性 */
-        
-        &:hover {
-            color: white; /* 悬停时变为纯白色 */
-        }
-    }
 }
 
 // ========== 作品集部分（修改重点） ==========
