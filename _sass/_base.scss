@@ -342,7 +342,7 @@ header {
 
     /* 4. 确保所有标题和次要文本变为白色 */
     .section-heading, h3 {
-        color: white;
+        color: white !important;
     }
     /* 6. 调整项目符号列表的颜色 */
     ul {
