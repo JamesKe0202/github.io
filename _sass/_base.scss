@@ -335,18 +335,33 @@ header {
     
     /* 2. 设置主要文本颜色为白色 */
     color: white; 
+
+	/* 4. 确保所有 H 标签（标题）为白色 */
+    h2, h3, h4, h5, h6 {
+        color: white !important;
+    }
     
     /* 3. 增加内边距，确保顶部内容不被导航栏遮挡 */
     padding: 100px 0; /* 默认的上下内边距 */
     padding-top: 150px; /* 额外的顶部间距，用于避开固定导航栏 */
 
-    /* 4. 确保所有标题和次要文本变为白色 */
-    .section-heading, h3 {
-        color: white !important;
+    /* 5. 确保 .text-muted (次要文本/摘要) 为柔和的白色 */
+    .text-muted {
+        color: rgba(white, .8) !important; 
     }
-    /* 6. 调整项目符号列表的颜色 */
-    ul {
-        color: rgba(white, .9);
+    
+    /* 6. 确保列表项和段落为白色 */
+    ul, p {
+        color: white !important; 
+    }
+
+	/* 7. 确保链接（例如教育背景中的大学名称）为浅蓝/白色 */
+    a {
+        color: white !important; /* 链接颜色使用浅蓝（$theme-light） */
+        
+        &:hover {
+            color: white !important; /* 悬停时变为纯白色 */
+        }
     }
     
 }
