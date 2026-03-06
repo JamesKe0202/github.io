@@ -7,7 +7,7 @@ url: "" # the base hostname & protocol for your site
 
 # 社交媒体账号（修正变量名和内容）
 linkedin_username: yuping-ke-000b60323  # 仅保留 LinkedIn 路径部分
-phone_number: "+447541041989"          # 新增手机号变量，移除多余符号
+itch_io: https://yuping-ke.itch.io/     
 
 # 原有账号（若需要保留）
 # twitter_username: your-twitter-handle  # 若不用可注释掉
